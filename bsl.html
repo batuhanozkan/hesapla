@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <style>
+.button {
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+</style>
+    </style>
+  </head>
+  <body>
+  
+    
+    <button id="baslat" class="button">BAŞLAT</button>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+      $(function () {
+        var socket = io.connect('https://hesapla.herokuapp.com');
+   
+    var baslat = $("#baslat")
+    baslat.click(function(){
+      socket.emit('change')    
+ })
+
+  });
+</script>
+  </body>
+
+
+</html>

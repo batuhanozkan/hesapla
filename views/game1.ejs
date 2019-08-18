@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>hesapla</title>
+<link href="https://fonts.googleapis.com/css?family=Indie+Flower&display=swap" rel="stylesheet">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<link href="https://fonts.googleapis.com/css?family=Major+Mono+Display|Roboto+Slab&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css?family=Stylish&display=swap" rel="stylesheet">
+<script src="/socket.io/socket.io.js"></script>
+<style>
+body {font-family: Arial, Helvetica, sans-serif;background-color:#f44336;overflow:hidden;}
+.button {
+  background-color: #000000; /* Green */
+  border: 2px;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 46px;
+  margin: 44px 5px;
+  cursor: pointer;
+  position: relative;
+  left: 20%;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+
+.sayi {
+    position: relative;
+    left: 27%;
+}
+.hsg {
+    position: relative;
+    left:-45%;
+    top:40px;
+    font-size:500%;
+    font-family: 'Indie Flower', cursive;
+    text-shadow: #FFFCA8 1px 1px 0px, #9C9C9C 2px 2px 0px;
+}
+.puan {
+    position: relative;
+    top:100px;
+    font-family: 'Roboto Slab', serif;
+    left:-50%;
+}
+.rslt{
+    position: relative;
+    left:-45%;
+    top:50px;
+    font-size:150%;
+}
+.list{
+    position: relative;
+    top:50px;
+    left:-10%;
+}
+li {
+    font-size:200%;
+    font-family: 'Stylish', sans-serif;
+}
+.button1 {
+    font-size:350%;
+    width: 100px;
+    border-radius: 35px;
+    margin:10px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+
+}
+.usr {
+    color:blue;
+}
+h2.b {
+  visibility: hidden;
+}
+.loading {
+    visibility: hidden;
+}
+#ba {
+  visibility: hidden;
+}
+.button1:hover {
+  background-color: #4CAF50;
+  
+}
+.buttons {
+    
+
+}
+.list1 {
+    visibility: hidden;
+}
+.online {
+    visibility: hidden;
+}
+@media screen and (max-width: 1200px) {
+  .hsg {
+    position: relative;
+    left:0%;
+    top:0px;
+    
+}
+.list2 {
+    visibility: hidden;
+}
+.list1 {
+    visibility: visible;
+}
+.online {
+    visibility: visible;
+}
+.buttons {
+    position: relative;
+    top: -40px;
+}
+.puan {
+    position: relative;
+    top:0px;
+    left:0;
+    font-family: 'Roboto Slab', serif;
+}
+.rslt{
+    position: relative;
+    top:0px;
+    left:0%;
+}
+.usr {
+
+}
+  .container {
+  padding: 0px;
+  position:relative;
+  top: 0px;
+  left:0%;
+}
+
+.button {
+    position:relative;
+  left: 0%;
+  padding:2% 2% 2% 2%;
+  margin:0% 0% 13% 3%;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.button1 {
+    position:relative;
+  left: 10%;
+  top:-28px;
+  padding:0% 0% 0% 0%;
+  margin:0% 0% 13% 3%;
+  font-size:200%;
+  background-color: white;
+  
+}
+.button1:hover {
+  background-color:white
+  
+}
+.list{
+    position: relative;
+    top:100px;
+    left:45%;
+}
+li {
+    font-size:150%;
+    font-family: 'Stylish', sans-serif;
+}
+.sayi {
+    position: relative;
+    left: 0%;
+    top:-10px;
+}
+
+
+
+ 
+}
+
+
+</style>
+</head>
+<body>
+
+
+
+
+<div class="container loading">
+    <div class="row">
+        <div class="col-md-1 col-sm-1 col-xs-1">
+                
+                <h1 class="hsg">HESAPLA</h1>
+                
+                        <h1 class="rslt"><i class="usr">batuhan</i> katıldı</h1>
+                    <h1 class="puan">puan: </h1>
+                
+                
+                
+                <h2 id="ba"><%= username %></h2>
+        </div>
+        <div class="list1">
+        <div class="col-md-1 col-sm-1 col-xs-1 list">
+            <ol class="lst" type="1">
+                <li> </li>
+                <li> </li>
+                <li> </li>
+                <li> </li>
+                <li> </li>
+              </ol>  
+        </div>
+    </div>
+        <div class="col-md-12 col-lg-9 col-sm-12 col-xs-12 buttons">
+    <button class="button" id="first"> </button>
+    <button class="button" id="operation"> </button>
+    <button class="button" id="second"> </button>
+    <button class="button" >=</button>
+
+    <div class="row">
+            <div class="container sayi">
+             <div class="row"> 
+                <button class="button1 sayi1" id="uyeler" > </button> 
+                <button class="button1 sayi2" id="uyeler" > </button> 
+                </div>
+                <div class="row"> 
+                    <button class="button1 sayi3" id="uyeler"> </button> 
+                    <button class="button1 sayi4" id="uyeler"> </button>
+                    </div>
+                </div>
+
+
+    </div>
+    </div>
+    <div class="col-md-1 col-sm-1 col-xs-1 list list2">
+            <ol class="lst" type="1">
+                    <li> </li>
+                    <li> </li>
+                    <li> </li>
+                    <li> </li>
+                    <li> </li>
+                  </ol>  
+ </div>
+</div>
+<p class="online">Toplam Online Oyuncu Sayısı:</p>
+</div>
+    
+    
+
+
+    
+<script>
+
+$(function () {
+    console.log("genislik"+$( window ).width());
+    var puan=0;
+    $(".puan").text("Puan:"+puan);
+    // setInterval(function() {
+    //     $(".puan").text($( window ).width());
+    // },100);
+   
+		//kullan.append("<li>"+$(this).text()+"</li>");
+		// socket.emit('private_message', {alan : $(this).text()})
+		// su=$(this).text()
+        // console.log("su "+su)
+        
+
+	
+   
+    var socket = io();
+    socket.on('connect', function(){
+        socket.emit("open")
+        socket.on('open1', (data) => {
+            console.log("clt sistem durumu"+data.open)
+        if(data.open==0) {
+            console.log("Başlatılmamış başlatılıyor")
+            socket.emit('change') 
+        }
+        else {
+            console.log("zaten başlatılmış")
+
+        }
+        })
+        var nm=$("#ba").text();
+        socket.emit("online",{name:nm})
+        
+        var socketid = socket.io.engine.id;
+        var result
+        console.log(socketid);
+        var id=$(".b").text();
+        console.log(id)
+        $('button[id^="uyeler"]').on('click', function() {
+            $('button[id^="uyeler"]').attr("disabled", true);
+            socket.emit('answer',{answer:$(this).text(),socketid:socketid,id:id,result:result,puan:puan})
+
+        });
+   
+        $(window).on("beforeunload", function() { 
+            var id=$(".b").text();
+    socket.emit("kapanma",{id:id})
+})
+    //var myYok = setInterval(myTimer2,1);
+    socket.on('change1', (data) => {
+        $('button[id^="uyeler"]').attr("disabled", false);
+        var sayac=0
+        
+        $("#first").text(data.first);
+        $("#second").text(data.second)
+        $("#operation").text(data.operation)
+        $(".loading").css("visibility", "visible");
+        $(".image").css("visibility", "hidden");
+        console.log("deneme"+data.gamers)
+        $(".lst").html("")
+        var toplam=Object.keys(data.gamers).length-1
+        for(sayac=0;sayac<5;sayac++){
+            console.log(data.gamers[toplam-sayac].name)
+            ;
+            $(".lst").append("<li>"+data.gamers[toplam-sayac].name+":"+data.gamers[toplam-sayac].puan+"</li>");
+            
+        };
+        result=data.answer
+        console.log("result"+result)
+        var y = Math.floor(Math.random() * 8)
+        var x = Math.floor(Math.random() * 2)
+        var z = Math.floor(Math.random() * 2)+1
+        switch (y) {
+            case 0:
+                $(".sayi1").text(result);
+                $(".sayi2").text(result+z)
+                $(".sayi3").text(result-z);
+                $(".sayi4").text(result+10+x)
+                break;
+            case 1:
+                $(".sayi1").text(result-z);
+                $(".sayi2").text(result)
+                $(".sayi3").text(result+z);
+                $(".sayi4").text(result+10+x)
+                break;
+            case 2:
+                $(".sayi1").text(result+z);
+                $(".sayi2").text(result+10+x)
+                $(".sayi3").text(result);
+                $(".sayi4").text(result-z)
+                break;
+            case 3:
+                $(".sayi1").text(result+z);
+                $(".sayi2").text(result+10+x)
+                $(".sayi3").text(result-z);
+                $(".sayi4").text(result)
+                break;
+            case 4:
+                $(".sayi1").text(result-10+z);
+                $(".sayi2").text(result-10+x)
+                $(".sayi3").text(result-10-z);
+                $(".sayi4").text(result)
+                break;
+            case 5:
+                $(".sayi1").text(result);
+                $(".sayi2").text(result-10+x)
+                $(".sayi3").text(result-10-z);
+                $(".sayi4").text(result-10+z)
+                break;
+            case 6:
+                $(".sayi1").text(result+z-10);
+                $(".sayi2").text(result)
+                $(".sayi3").text(result-z-10);
+                $(".sayi4").text(result+10+x)
+                break;
+            case 7:
+                $(".sayi1").text(result+z-10);
+                $(".sayi2").text(result-z-10)
+                $(".sayi3").text(result);
+                $(".sayi4").text(result+10+x)
+                break;
+            
+            }
+        
+        
+  });
+  socket.on('hey', (data) => {
+      console.log("puaan"+data.puan)
+        puan=data.puan
+        $(".puan").text("Puan:"+puan);
+        //$(".rslt").text(data.message);
+
+
+  });
+  socket.on('online1', (data) => {
+      console.log("usr"+data.name)
+        $(".usr").text(data.name)
+        $(".online").text("Toplam Online Oyuncu Sayısı: "+data.sayi)
+
+        //$(".rslt").text(data.message);
+
+
+  });
+  socket.on('cikis', (data) => {
+      
+    location.replace("/cikis")
+
+
+  });
+});
+})
+
+</script>
+
+</body>
+</html>
+
